@@ -1,0 +1,1 @@
+<h1 class="text-4xl pt-10  text-blue-600">{{ $slot }}</h1>

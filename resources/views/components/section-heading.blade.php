@@ -1,0 +1,1 @@
+<h3 class="text-xl border-b border-white/10 py-2 w-fit">{{ $slot }}</h3>
