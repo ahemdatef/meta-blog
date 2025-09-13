@@ -21,7 +21,7 @@
                </div>
 
                <div class="space-x-6 text-sm font-medium">
-                    <a href="">Blog</a>
+                    <a href="/posts">Blog</a>
                     <a href="">About</a>
                     <a href="">Contact</a>
                </div>

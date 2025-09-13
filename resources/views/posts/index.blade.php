@@ -16,32 +16,19 @@
         </section>
 
         <section>
-            <x-section-heading>Recent Posts</x-section-heading>
-
+            <x-section-heading>All Posts</x-section-heading>
 
             <div class="grid lg:grid-cols-3 gap-8 mt-6">
-                @foreach ($recentPosts as $post)
+                @foreach ($allPosts as $post)
                     <x-recent-card :$post />
                 @endforeach
             </div>
 
-        </section>
-
-        <section>
-            <x-section-heading>Blog Posts</x-section-heading>
-
-            <div class="mt-6 space-y-6">
-                @foreach ($posts as $post)
-                    <x-blog-card :size="180" :$post />
-                @endforeach
+            <div class="mt-8">
+                {{ $allPosts->links() }}
             </div>
-        </section>
 
-        <a href="/posts">
-            <x-button>
-                All Posts
-            </x-button>
-        </a>
+        </section>
 
     </div>
 

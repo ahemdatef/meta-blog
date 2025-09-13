@@ -1,4 +1,4 @@
-@props(['size' => '330'])
+@props(['post', 'size' => '330'])
 
 <div
      class="p-4 bg-white/5 rounded-xl border border-transparent hover:border-blue-600 group transition-colors duration-300 flex flex-col">
@@ -8,16 +8,16 @@
      </div>
 
      <div class="py-8">
-          <a href="#" target="_blank" class="text-sm text-blue-400">
-               Design
+          <a href="#" class="text-sm text-blue-400">
+               {{ $post->category->name }}
           </a>
-          <h3 class="font-bold text-2xl transition-colors duration-300 group-hover:text-blue-600 mt-1">
-               <a href="#">UX review presentations</a>
-          </h3>
+          <a href="posts/{{ $post->id }}">
+               <h3 class="font-bold text-2xl transition-colors duration-300 group-hover:text-blue-600 mt-1">
+                    {{ $post->title }}
+               </h3>
+          </a>
 
-          <p class="text-sm mt-2 text-gray-400">How do you create compelling presentations that wow your
-               colleagues and
-               impress your managers?</p>
+          <p class="text-sm mt-2 text-gray-400">{{ str_split($post->body, '100')[0] }}</p>
      </div>
 
      <div class="flex flex-start gap-3 items-center mt-auto">
@@ -26,8 +26,8 @@
           </div>
 
           <div>
-               <p class="text-[14px]">Name</p>
-               <p class="text-[10px] text-gray-300">21 jan 2026</p>
+               <p class="text-[14px]">{{ $post->user->name }}</p>
+               <p class="text-[10px] text-gray-300">{{ $post->created_at }}</p>
           </div>
      </div>
 </div>
