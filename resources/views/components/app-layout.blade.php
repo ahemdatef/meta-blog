@@ -26,10 +26,25 @@
                     <a href="">Contact</a>
                </div>
 
-               <div class="space-x-6">
-                    <a href="/login">Login</a>
-                    <a href="/register">Register</a>
-               </div>
+               @guest
+                    <div class="space-x-6">
+                         <a href="/login">Login</a>
+                         <a href="/register">Register</a>
+                    </div>
+               @endguest
+
+               @auth
+                    <div class="space-x-6 flex items-center">
+                         <a href="/posts/create">Create Post</a>
+
+                         <form action="/logout" method="POST">
+                              @csrf
+                              @method('DELETE')
+
+                              <button class="cursor-pointer">Logout</button>
+                         </form>
+                    </div>
+               @endauth
           </nav>
 
           <main class="mx-auto max-w-[1280px]">
