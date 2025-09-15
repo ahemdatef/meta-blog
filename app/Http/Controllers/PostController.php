@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
+use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Validation\Rules\File;
 
 class PostController extends Controller
 {
@@ -22,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -30,7 +34,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required'],
+            'category' => ['required'],
+            'image' => ['nullable', File::types(['png', 'jpg', 'webp'])],
+            'body' => ['required'],
+        ]);
+
+        $imagePath = $request->image->store('posts', 'public');
+        $cate = Category::firstOrCreate(['name' => $request->category]);
+
+        Auth::user()->posts()->create([
+            'title' => $request->title,
+            'category_id' => $cate->id,
+            'body' => $request->body,
+            'image' => $imagePath,
+        ]);
+
+        return redirect('/posts');
     }
 
     /**

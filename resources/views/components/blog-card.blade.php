@@ -4,7 +4,7 @@
      class="p-3 bg-white/5 rounded-xl border border-transparent hover:border-blue-600 group transition-colors duration-300 flex  justify-between items-center space-x-3">
 
      <div>
-          <img src="https://picsum.photos/{{ $size }}" alt="" class="m-auto w-full rounded">
+          <img src="{{ asset('storage/' . $post->image) }}" alt="" class="m-auto w-full rounded">
      </div>
 
      <div class="py-8 flex-1">
@@ -22,7 +22,7 @@
      </div>
      <div class="flex gap-3 items-center mt-auto">
           <div class="">
-               <img src="https://picsum.photos/40" alt="" class="rounded-full">
+               <img src="{{ asset('storage/' . $post->user->image) }}" alt="" class="rounded-full" width="40">
           </div>
 
           <div>

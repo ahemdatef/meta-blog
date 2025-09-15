@@ -6,8 +6,8 @@
 
      <div class="mt-20">
 
-          <div>
-               <img src="https://picsum.photos/990/440" alt="" class="m-auto w-full object-cover">
+          <div class="w-[900px] h-[440px]">
+               <img src="{{ asset('storage/' . $post->image) }}" alt="" class="m-auto w-full h-full object-cover">
           </div>
 
           <div class="mt-20 text-gray-300 leading-loose font-light">
@@ -16,7 +16,7 @@
      </div>
 
      <div class="mt-20 flex space-x-4 items-center">
-          <img src="https://picsum.photos/60" alt="" class="rounded-full">
+          <img src="{{ asset('storage/' . $post->user->image) }}" alt="" class="rounded-full" width="40">
 
           <div>
                <p>{{ $post->user->name }}</p>
@@ -24,14 +24,23 @@
           </div>
      </div>
 
-     <div class="mt-10">
+     <div class="mt-10 space-y-6">
           <x-section-heading>Add Comment</x-section-heading>
 
-          <form action="/comments" method="POST" class="mb-6">
-               @csrf
-               <input type="text" name="comment" placeholder="Add Comment..."
-                    class="mt-2 px-4 py-2 bg-white/10 rounded-lg w-full max-w-xl" />
-          </form>
+          @auth
+               <form action="/posts/{{ $post->id }}/comments" method="POST" class="mb-6" class="">
+                    @csrf
+                    <textarea type="text" name="comment_body" placeholder="Add Comment..."
+                         class="mt-2 px-4 py-2 bg-white/10 rounded-lg w-full max-w-xl"></textarea>
+
+                    <x-forms.button>Comment</x-forms.button>
+
+               </form>
+          @endauth
+
+          @guest
+               <h3 class="text-sm text-gray-400">Please login to comment...</h3>
+          @endguest
 
           <a href="/posts/{{ $post->id }}/comments">
                <x-button>All Comments</x-button>

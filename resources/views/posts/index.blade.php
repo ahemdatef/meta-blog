@@ -8,10 +8,9 @@
                 <p class="mt-6 font-light">The latest industry news, interviews, technologies, and
                     resources.</p>
 
-                <form action="/search">
-                    <input type="text" name="search" placeholder="technologies..."
-                        class="mt-6 px-4 py-2 bg-white/10 rounded-lg w-full max-w-xl">
-                </form>
+                <x-forms.form action="/search" class="mt-6">
+                    <x-forms.input :label=false name="q" placeholder="Music..." />
+                </x-forms.form>
             </div>
         </section>
 

@@ -22,6 +22,13 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function getCategory(string $name)
+    {
+        $cat = Category::firstOrCreate(['name' => strtolower($name)]);
+
+        return $this->category();
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
